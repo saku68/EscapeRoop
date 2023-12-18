@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class WarpS : MonoBehaviour
 {
-    public bool warp2 = false; // ワープフラグ
-    public GameObject warp1; // Warp1のGameObjectをInspectorから指定
-    public Transform warpTo2; // 移動先のターゲット位置をInspectorから設定
-    
+    private WarpManager warpManager;
+    public Transform warpTo2; // ループ先の位置
+    public Transform warpTo4; // 2ステージ目
     // Start is called before the first frame update
     void Start()
     {
-        
+        warpManager = GameObject.Find("WarpManager").GetComponent<WarpManager>();
     }
 
     // Update is called once per frame
@@ -25,20 +24,23 @@ public class WarpS : MonoBehaviour
         // プレイヤーキャラクターが接触したら
         if (other.CompareTag("Player"))
         {
-            // ワープ１フラグをオンにする
-            WarpF warpF = warp1.GetComponent<WarpF>();
-            warpF.warp1 = true;
-            Debug.Log("Warp1 flag is ON!");
-
-            // ワープ2フラグがオンの場合、プレイヤーを移動させる
-            if (warp2 == true)
+            // ワープ1フラグがオンの場合、プレイヤーを進行させる
+            if (warpManager.warp1 == true)
+            {
+                GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+                playerObject.transform.transform.position = warpTo4.position;
+                playerObject.transform.rotation = Quaternion.Euler(0f, -90f, 0f);
+                Debug.Log("Warp to 4 正解!!");
+                warpManager.warp1 = Random.Range(0, 2) == 0;
+            }
+            else
             {
                 GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
                 playerObject.transform.transform.position = warpTo2.position;
                 playerObject.transform.rotation = Quaternion.Euler(0f, -90f, 0f);
-                warp2 = false;
-                Debug.Log("Warp to 2!!");
-            
+                Debug.Log("Warp to 2 ループや!!");
+                
+                
             }
         }
         
