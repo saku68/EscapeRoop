@@ -23,22 +23,22 @@ public class WarpF : MonoBehaviour
         // プレイヤーキャラクターが接触したら
         if (other.CompareTag("Player"))
         {
-            // ワープ1フラグがオンの場合、プレイヤーをループさせる
+            // ワープ1フラグがオンの場合、プレイヤーを進行させる
             if (warpManager.warp1 == true)
-            {
-                GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
-                playerObject.transform.transform.position = warpTo1.position;
-                playerObject.transform.rotation = Quaternion.Euler(0f, 90f, 0f);
-                Debug.Log("Warp to 1 ループや!!");
-                warpManager.warp1 = Random.Range(0, 2) == 0;
-            }
-            else
             {
                 GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
                 playerObject.transform.transform.position = warpTo3.position;
                 playerObject.transform.rotation = Quaternion.Euler(0f, 90f, 0f);
                 Debug.Log("Warp to 3 正解!!");
-                
+                warpManager.Warpswi();
+            }
+            else
+            {
+                GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+                playerObject.transform.transform.position = warpTo1.position;
+                playerObject.transform.rotation = Quaternion.Euler(0f, 90f, 0f);
+                Debug.Log("Warp to 1 ループや!!");
+                warpManager.Warpswi();
             }
             
         }
