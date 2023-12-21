@@ -24,14 +24,14 @@ public class WarpS : MonoBehaviour
         // プレイヤーキャラクターが接触したら
         if (other.CompareTag("Player"))
         {
-            // ワープ1フラグがオンの場合、プレイヤーを進行させる
-            if (warpManager.warp1 == true)
+            // ワープ2フラグがオンの場合、プレイヤーを進行させる
+            if (warpManager.warp2 == true)
             {
                 GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
                 playerObject.transform.transform.position = warpTo4.position;
                 playerObject.transform.rotation = Quaternion.Euler(0f, -90f, 0f);
                 Debug.Log("Warp to 4 正解!!");
-                warpManager.warp1 = Random.Range(0, 2) == 0;
+                warpManager.Warpswi();
             }
             else
             {
@@ -39,11 +39,9 @@ public class WarpS : MonoBehaviour
                 playerObject.transform.transform.position = warpTo2.position;
                 playerObject.transform.rotation = Quaternion.Euler(0f, -90f, 0f);
                 Debug.Log("Warp to 2 ループや!!");
-                
-                
+                warpManager.Warpswi();
             }
         }
-        
     }
     
 }
