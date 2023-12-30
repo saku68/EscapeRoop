@@ -30,7 +30,7 @@ public class WarpS : MonoBehaviour
                 GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
                 playerObject.transform.transform.position = warpTo4.position;
                 playerObject.transform.rotation = Quaternion.Euler(0f, -90f, 0f);
-                Debug.Log("Warp to 4 正解!!");
+                Debug.Log("Warp to 4 正解");
                 warpManager.Warpswi();
             }
             else

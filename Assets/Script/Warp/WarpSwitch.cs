@@ -25,6 +25,7 @@ public class WarpSwitch : MonoBehaviour
             if (warpManager.warpSwitch == true)
             {
                 warpManager.SwitchWarp();
+                warpManager.humanMoveOn();
             }
         }
     }
