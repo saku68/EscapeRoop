@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class WarpManager : MonoBehaviour
 {
+    public int HumanMoveInt = 4; 
     public bool HumanMove = false;
+    public bool HumanMove1 = true;
     public bool warpSwitch ; // 切り替え制限フラグ
     public bool warp1 ; // 脱ループフラグ
     public bool warp2 ; // 脱ループフラグ 
@@ -89,9 +91,23 @@ public class WarpManager : MonoBehaviour
     public void humanMoveOn()
     {
         HumanMove = true;
+        HumanMoveInt = HumanMoveInt - 4;
     }
     public void humanMoveOff()
     {
         HumanMove = false;
     }
+    public void humanInt()
+    {
+        HumanMoveInt = HumanMoveInt + 1;
+    }
+    public void humanMoveSwitch1()
+    {
+        HumanMove1 = true;
+    }
+    public void humanMoveSwitch2()
+    {
+        HumanMove1 = false;
+    }
+
 }
