@@ -11495,7 +11495,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c45b62f394b71b459821084a520a1d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HumanMoveInt: 4
   HumanMove: 0
+  HumanMove1: 1
   warpSwitch: 0
   warp1: 0
   warp2: 0
@@ -11554,7 +11556,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c158ddb3c823ed546b0f3d4e6bd78ec4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HumanMoveInt: 0
   points:
   - {fileID: 389869992}
   - {fileID: 1749414215}
@@ -11592,7 +11593,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 538246188}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 1000
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -16852,6 +16853,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1742638997}
     m_Modifications:
+    - target: {fileID: 4079115163401471229, guid: ec359f99037709646a1a187546ca52c6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 127
+      objectReference: {fileID: 0}
     - target: {fileID: 4634678132177570466, guid: ec359f99037709646a1a187546ca52c6,
         type: 3}
       propertyPath: m_Name
@@ -48567,7 +48573,7 @@ PrefabInstance:
     - target: {fileID: 7610868675822231441, guid: e85142d1c78f896448e46cbaebcccc58,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.5000114
+      value: 5.5
       objectReference: {fileID: 0}
     - target: {fileID: 7610868675822231441, guid: e85142d1c78f896448e46cbaebcccc58,
         type: 3}
@@ -48577,7 +48583,7 @@ PrefabInstance:
     - target: {fileID: 7610868675822231441, guid: e85142d1c78f896448e46cbaebcccc58,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.25000048
+      value: -0.4
       objectReference: {fileID: 0}
     - target: {fileID: 7610868675822231441, guid: e85142d1c78f896448e46cbaebcccc58,
         type: 3}

@@ -39,6 +39,7 @@ public class WarpF : MonoBehaviour
                 playerObject.transform.rotation = Quaternion.Euler(0f, 90f, 0f);
                 Debug.Log("Warp to 1 ループや!!");
                 warpManager.Warpswi();
+                warpManager.humanMoveSwitch2();
             }
             
         }
