@@ -7,12 +7,6 @@ public class Human : MonoBehaviour
 {
     private NavMeshAgent agent;
 
-   //目的地の数と場所の設定
-    public Transform[] points;
-
-    //最初の目的地
-    public int destPoint = 0;
-
     //アニメーション用
     private Animator animator;
     private WarpManager warpManager;
@@ -44,25 +38,14 @@ public class Human : MonoBehaviour
 
         // ４つ目で止めたい時
         // 地点がなにも設定されていないときに返します
-        if (points.Length == 0)
+        if (warpManager.points.Length == 0)
         {
             return;
         }
         // エージェントが現在設定された目標地点に行くように設定します
-        agent.destination = points[destPoint].position;
+        agent.destination = warpManager.points[warpManager.destPoint].position;
 
-        // 配列内の次の位置を目標地点に設定し、
-        // 必要ならば出発地点にもどります
-        if (warpManager.HumanMove1 == true)
-        {
-            destPoint = (destPoint + 1) % points.Length;
-        }
-        if (warpManager.HumanMove1 == false)
-        {
-            destPoint = (destPoint > 0) ? destPoint - 1 : points.Length - 1;
-        }
-
-
+        warpManager.destPointSet();
         warpManager.humanInt();
         if(warpManager.HumanMoveInt  >= 4)
         {
@@ -72,6 +55,8 @@ public class Human : MonoBehaviour
             // agent.velocity = Vector3.zero;
         }
     }
+
+    
 
     // Update is called once per frame
     void Update()
