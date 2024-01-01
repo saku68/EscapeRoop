@@ -4,7 +4,17 @@ using UnityEngine;
 
 public class WarpManager : MonoBehaviour
 {
-    public int HumanMoveInt = 4; 
+    //最初の人間の目的地
+    public int destPoint = 0;
+    //目的地の数と場所の設定
+    public Transform[] points;
+
+    public GameObject humanPrefab; // 生成する人間のプレハブ
+    public Transform humanSpawnPoint1;   // 人間の生成先の位置
+    public Transform humanSpawnPoint2;   // 人間の生成先の位置
+    [SerializeField]
+    private GameObject spawnedHuman; // 生成された人間の参照を保持する変数
+    public int HumanMoveInt; 
     public bool HumanMove = false;
     public bool HumanMove1 = true;
     public bool warpSwitch ; // 切り替え制限フラグ
@@ -91,7 +101,7 @@ public class WarpManager : MonoBehaviour
     public void humanMoveOn()
     {
         HumanMove = true;
-        HumanMoveInt = HumanMoveInt - 4;
+        HumanMoveInt = 0;
     }
     public void humanMoveOff()
     {
@@ -103,11 +113,69 @@ public class WarpManager : MonoBehaviour
     }
     public void humanMoveSwitch1()
     {
+        destPointReset1();
         HumanMove1 = true;
     }
     public void humanMoveSwitch2()
     {
+        destPointReset2();
         HumanMove1 = false;
     }
-
+    public void SpawnHumanAtSpawnPoint1()
+    {
+        spawnedHuman = Instantiate(humanPrefab, humanSpawnPoint1.position, humanSpawnPoint1.rotation);
+        // 生成されたオブジェクトの持つ全てのコンポーネントを有効にする
+        Behaviour[] behaviours = spawnedHuman.GetComponents<Behaviour>();
+        foreach (Behaviour behaviour in behaviours)
+        {
+        behaviour.enabled = true;
+        }
+    }
+    public void SpawnHumanAtSpawnPoint2()
+    {
+        spawnedHuman = Instantiate(humanPrefab, humanSpawnPoint2.position, humanSpawnPoint2.rotation);
+        // 生成されたオブジェクトの持つ全てのコンポーネントを有効にする
+        Behaviour[] behaviours = spawnedHuman.GetComponents<Behaviour>();
+        foreach (Behaviour behaviour in behaviours)
+        {
+        behaviour.enabled = true;
+        }
+    }
+    // 生成された人間を削除する関数
+    public void DestroyHuman()
+    {
+        GameObject HumanObject = GameObject.FindGameObjectWithTag("Human");
+        if (HumanObject != null)
+        {
+            Destroy(HumanObject);
+        }
+    }
+    public void DestroySpawnedHuman()
+    {
+        if (spawnedHuman != null)
+        {
+            Destroy(spawnedHuman);
+        }
+    }
+    public void destPointSet()
+    {
+        // 配列内の次の位置を目標地点に設定し、
+        // 必要ならば出発地点にもどります
+        if (HumanMove1 == true)
+        {
+        destPoint = (destPoint + 1) % points.Length;
+        }
+        if (HumanMove1 == false)
+        {
+        destPoint = (destPoint > 0) ? destPoint - 1 : points.Length - 1;
+        }
+    }
+    public void destPointReset1()
+    {
+        destPoint = 0;
+    }
+    public void destPointReset2()
+    {
+        destPoint = 3;
+    }
 }

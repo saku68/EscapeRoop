@@ -40,6 +40,10 @@ public class WarpF : MonoBehaviour
                 Debug.Log("Warp to 1 ループや!!");
                 warpManager.Warpswi();
                 warpManager.humanMoveSwitch2();
+                warpManager.DestroyHuman();
+                warpManager.DestroySpawnedHuman();
+                // Invoke("warpManager.SpawnHumanAtSpawnPoint2()", 0.5f);
+                warpManager.SpawnHumanAtSpawnPoint2();
             }
             
         }
