@@ -41,10 +41,11 @@ public class WarpS : MonoBehaviour
                 Debug.Log("Warp to 2 ループや!!");
                 warpManager.Warpswi();
                 warpManager.humanMoveSwitch1();
-                warpManager.DestroyHuman();
-                warpManager.DestroySpawnedHuman();
-                // Invoke("warpManager.SpawnHumanAtSpawnPoint1()", 0.5f);
-                warpManager.SpawnHumanAtSpawnPoint1();
+                // warpManager.DestroyHuman();
+                // warpManager.DestroySpawnedHuman();
+                // warpManager.SpawnHumanAtSpawnPoint1();
+                warpManager.warpHuman1();
+                warpManager.humanMoveOff();
             }
         }
     }

@@ -9,11 +9,11 @@ public class WarpManager : MonoBehaviour
     //目的地の数と場所の設定
     public Transform[] points;
 
-    public GameObject humanPrefab; // 生成する人間のプレハブ
+    // public GameObject humanPrefab; // 生成する人間のプレハブ
     public Transform humanSpawnPoint1;   // 人間の生成先の位置
     public Transform humanSpawnPoint2;   // 人間の生成先の位置
     [SerializeField]
-    private GameObject spawnedHuman; // 生成された人間の参照を保持する変数
+    // private GameObject spawnedHuman; // 生成された人間の参照を保持する変数
     public int HumanMoveInt; 
     public bool HumanMove = false;
     public bool HumanMove1 = true;
@@ -115,48 +115,53 @@ public class WarpManager : MonoBehaviour
     {
         destPointReset1();
         HumanMove1 = true;
+        
     }
     public void humanMoveSwitch2()
     {
         destPointReset2();
         HumanMove1 = false;
+        
     }
-    public void SpawnHumanAtSpawnPoint1()
-    {
-        spawnedHuman = Instantiate(humanPrefab, humanSpawnPoint1.position, humanSpawnPoint1.rotation);
-        // 生成されたオブジェクトの持つ全てのコンポーネントを有効にする
-        Behaviour[] behaviours = spawnedHuman.GetComponents<Behaviour>();
-        foreach (Behaviour behaviour in behaviours)
-        {
-        behaviour.enabled = true;
-        }
-    }
-    public void SpawnHumanAtSpawnPoint2()
-    {
-        spawnedHuman = Instantiate(humanPrefab, humanSpawnPoint2.position, humanSpawnPoint2.rotation);
-        // 生成されたオブジェクトの持つ全てのコンポーネントを有効にする
-        Behaviour[] behaviours = spawnedHuman.GetComponents<Behaviour>();
-        foreach (Behaviour behaviour in behaviours)
-        {
-        behaviour.enabled = true;
-        }
-    }
-    // 生成された人間を削除する関数
-    public void DestroyHuman()
-    {
-        GameObject HumanObject = GameObject.FindGameObjectWithTag("Human");
-        if (HumanObject != null)
-        {
-            Destroy(HumanObject);
-        }
-    }
-    public void DestroySpawnedHuman()
-    {
-        if (spawnedHuman != null)
-        {
-            Destroy(spawnedHuman);
-        }
-    }
+
+    // public void SpawnHumanAtSpawnPoint1()
+    // {
+    //     spawnedHuman = Instantiate(humanPrefab, humanSpawnPoint1.position, humanSpawnPoint1.rotation);
+    //     // 生成されたオブジェクトの持つ全てのコンポーネントを有効にする
+    //     Behaviour[] behaviours = spawnedHuman.GetComponents<Behaviour>();
+    //     foreach (Behaviour behaviour in behaviours)
+    //     {
+    //     behaviour.enabled = true;
+    //     }
+    // }
+    // public void SpawnHumanAtSpawnPoint2()
+    // {
+    //     spawnedHuman = Instantiate(humanPrefab, humanSpawnPoint2.position, humanSpawnPoint2.rotation);
+    //     // 生成されたオブジェクトの持つ全てのコンポーネントを有効にする
+    //     Behaviour[] behaviours = spawnedHuman.GetComponents<Behaviour>();
+    //     foreach (Behaviour behaviour in behaviours)
+    //     {
+    //     behaviour.enabled = true;
+    //     }
+    // }
+    // // 生成された人間を削除する関数
+    // public void DestroyHuman()
+    // {
+    //     GameObject HumanObject = GameObject.FindGameObjectWithTag("Human");
+    //     if (HumanObject != null)
+    //     {
+    //         Destroy(HumanObject);
+    //     }
+    // }
+    // public void DestroySpawnedHuman()
+    // {
+    //     if (spawnedHuman != null)
+    //     {
+    //         Destroy(spawnedHuman);
+    //     }
+    // }
+
+    //人間の歩く方向
     public void destPointSet()
     {
         // 配列内の次の位置を目標地点に設定し、
@@ -172,10 +177,20 @@ public class WarpManager : MonoBehaviour
     }
     public void destPointReset1()
     {
-        destPoint = 0;
+        destPoint = 1;
     }
     public void destPointReset2()
     {
-        destPoint = 3;
+        destPoint = 0;
+    }
+    public void warpHuman1()
+    {
+        GameObject humanObject = GameObject.FindGameObjectWithTag("Human");
+        humanObject.transform.transform.position = humanSpawnPoint1.position;
+    }
+    public void warpHuman2()
+    {
+        GameObject humanObject = GameObject.FindGameObjectWithTag("Human");
+        humanObject.transform.transform.position = humanSpawnPoint2.position;
     }
 }

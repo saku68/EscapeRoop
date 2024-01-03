@@ -47,6 +47,7 @@ public class Human : MonoBehaviour
 
         warpManager.destPointSet();
         warpManager.humanInt();
+
         if(warpManager.HumanMoveInt  >= 4)
         {
             warpManager.humanMoveOff();
@@ -56,16 +57,22 @@ public class Human : MonoBehaviour
         }
     }
 
+
+
     
 
     // Update is called once per frame
     void Update()
     {
-        // エージェントが現目標地点に近づいてきたら、
-        // 次の目標地点を選択します
-        if (!agent.pathPending && agent.remainingDistance < 0.5f && warpManager.HumanMove == true)
+        if(warpManager.HumanMove == true)
         {
-        GotoNextPoint();
+            // エージェントが現目標地点に近づいてきたら、
+            // 次の目標地点を選択します
+            if (!agent.pathPending && agent.remainingDistance < 0.5f)
+            {
+            GotoNextPoint();
+            Debug.Log("人間、目的地向かう。");
+            }
         }
         
         //アニメーションの切り替え
