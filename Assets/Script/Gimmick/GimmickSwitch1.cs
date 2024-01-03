@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WarpSwitch : MonoBehaviour
+public class GimmickSwitch1 : MonoBehaviour
 {
     private WarpManager warpManager;
     // Start is called before the first frame update
@@ -16,17 +16,20 @@ public class WarpSwitch : MonoBehaviour
     {
         
     }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            // Debug.Log("切り替えスイッチに接触した");
             if (warpManager.warpSwitch == true)
             {
                 warpManager.SwitchWarp();
                 warpManager.humanMoveOn();
+                if(warpManager.warp2 == true)
+                {
+                    warpManager.gimmickSwitchOn();
+                }
             }
+            // Debug.Log("切り替えスイッチに接触した");
         }
     }
 }
