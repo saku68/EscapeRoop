@@ -21,7 +21,7 @@ public class WarpSwitch : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("接触はした");
+            // Debug.Log("切り替えスイッチに接触した");
             if (warpManager.warpSwitch == true)
             {
                 warpManager.SwitchWarp();
