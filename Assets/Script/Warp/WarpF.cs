@@ -31,6 +31,7 @@ public class WarpF : MonoBehaviour
                 playerObject.transform.rotation = Quaternion.Euler(0f, 90f, 0f);
                 Debug.Log("Warp to 3 正解");
                 warpManager.Warpswi();
+                warpManager.gimmickSwitchOff();
             }
             else
             {
@@ -45,6 +46,7 @@ public class WarpF : MonoBehaviour
                 // warpManager.SpawnHumanAtSpawnPoint2();
                 warpManager.warpHuman2();
                 warpManager.humanMoveOff();
+                warpManager.gimmickSwitchOff();
             }
             
         }

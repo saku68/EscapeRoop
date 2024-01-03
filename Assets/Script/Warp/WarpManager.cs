@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class WarpManager : MonoBehaviour
 {
+    public bool gimmickSwitch = false;
     private Human human;
     //最初の人間の目的地
     public int destPoint = 0;
@@ -13,7 +14,7 @@ public class WarpManager : MonoBehaviour
     // public GameObject humanPrefab; // 生成する人間のプレハブ
     public Transform humanSpawnPoint1;   // 人間の生成先の位置
     public Transform humanSpawnPoint2;   // 人間の生成先の位置
-    [SerializeField]
+    // [SerializeField]
     // private GameObject spawnedHuman; // 生成された人間の参照を保持する変数
     public int HumanMoveInt; 
     public bool HumanMove = false;
@@ -85,6 +86,8 @@ public class WarpManager : MonoBehaviour
 
             //もう直接貼り付けよう
     }
+    
+    //ワープの正誤入れ替え
     public void SwitchWarp()
     {
         bool randomFlag = Random.Range(0, 2) == 0; // 0か1をランダムに選択し、0ならFalse、1ならTrueを設定する
@@ -93,6 +96,8 @@ public class WarpManager : MonoBehaviour
         warpSwitch = false;
         Debug.Log("warpswitch 切り替え");
     }
+
+    //ワープスイッチのリセット
     public void Warpswi()
     {
         warpSwitch = true;
@@ -195,4 +200,15 @@ public class WarpManager : MonoBehaviour
         GameObject humanObject = GameObject.FindGameObjectWithTag("Human");
         humanObject.transform.transform.position = humanSpawnPoint2.position;
     }
+
+    //ギミックの切り替え
+    public void gimmickSwitchOn()
+    {
+        gimmickSwitch = true;
+    }
+    public void gimmickSwitchOff()
+    {
+        gimmickSwitch = false;
+    }
+
 }
