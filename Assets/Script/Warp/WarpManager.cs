@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class WarpManager : MonoBehaviour
 {
+    private Human human;
     //最初の人間の目的地
     public int destPoint = 0;
     //目的地の数と場所の設定
@@ -30,6 +31,7 @@ public class WarpManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        human = GameObject.Find("Basic_BanditPrefab").GetComponent<Human>();
         warp1 = false;
         warp2 = false;
         warpSwitch = true;
@@ -115,13 +117,13 @@ public class WarpManager : MonoBehaviour
     {
         destPointReset1();
         HumanMove1 = true;
-        
+        human.humanAgentReset();
     }
     public void humanMoveSwitch2()
     {
         destPointReset2();
         HumanMove1 = false;
-        
+        human.humanAgentReset();
     }
 
     // public void SpawnHumanAtSpawnPoint1()
@@ -177,11 +179,11 @@ public class WarpManager : MonoBehaviour
     }
     public void destPointReset1()
     {
-        destPoint = 1;
+        destPoint = 0;
     }
     public void destPointReset2()
     {
-        destPoint = 0;
+        destPoint = 3;
     }
     public void warpHuman1()
     {
