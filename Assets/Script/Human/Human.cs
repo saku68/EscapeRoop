@@ -57,6 +57,10 @@ public class Human : MonoBehaviour
         }
     }
 
+    public void humanAgentReset()
+    {
+        agent.ResetPath(); // 現在のパスをリセット
+    }
 
 
     
