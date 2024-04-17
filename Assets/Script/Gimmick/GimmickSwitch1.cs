@@ -28,6 +28,7 @@ public class GimmickSwitch1 : MonoBehaviour
                 {
                     warpManager.gimmickSwitchOn();
                 }
+
             }
             // Debug.Log("切り替えスイッチに接触した");
         }

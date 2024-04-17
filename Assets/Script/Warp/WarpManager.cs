@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class WarpManager : MonoBehaviour
 {
-    public bool gimmickSwitch = false;
+
+    public GameObject gimmickObject1;    
+    public bool gimmickSwitch1 = false;
     private Human human;
     //最初の人間の目的地
     public int destPoint = 0;
@@ -41,10 +43,15 @@ public class WarpManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //ライトの点滅ギミックの呼び出し
+        if (gimmickSwitch1  == true)
+        {
+            InvokeRepeating("LightChange", 0f,2f);
+            gimmickSwitch1 = false;
+        }
     }
-    private void OnTriggerEnter(Collider other)
-    {
+    // private void OnTriggerEnter(Collider other)
+    // {
         // // プレイヤーキャラクターが接触したら
         // if (other.CompareTag("Player") && other.gameObject == warpswitch1)
         // {
@@ -85,7 +92,7 @@ public class WarpManager : MonoBehaviour
         // }
 
             //もう直接貼り付けよう
-    }
+    // }
     
     //ワープの正誤入れ替え
     public void SwitchWarp()
@@ -204,11 +211,26 @@ public class WarpManager : MonoBehaviour
     //ギミックの切り替え
     public void gimmickSwitchOn()
     {
-        gimmickSwitch = true;
+        gimmickSwitch1 = true;
     }
     public void gimmickSwitchOff()
     {
-        gimmickSwitch = false;
+        gimmickSwitch1 = false;
+        CancelInvoke("LightChange"); // InvokeRepeating を停止する
     }
 
+    void GimmickObject1Visibility()
+    {
+        // ライトの表示切り替え
+        if (gimmickObject1 != null)
+        {
+            gimmickObject1.SetActive(!gimmickObject1.activeSelf);
+        }
+    }
+    void LightChange()
+    {
+        //ライトの点滅
+        Invoke("GimmickObject1Visibility", 0.5f);
+        Invoke("GimmickObject1Visibility", 0.6f);
+    }
 }
